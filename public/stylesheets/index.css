@@ -96,3 +96,9 @@ header {
     height: auto;
   }
 }
+
+p,
+h4,
+h1 {
+  cursor: default;
+}
