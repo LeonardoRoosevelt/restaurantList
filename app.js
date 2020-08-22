@@ -13,7 +13,19 @@ app.set("view engine", "handlebars")
 app.use(express.static("public"))
 
 app.get("/", (req, res) => {
-  res.send("this is restaurant web")
+  res.render("index", { restaurant: restaurantList.results })
+})
+
+// params
+app.get("/restaurants/:restaurant_id", (req, res) => {
+  console.log(req.params.restaurant_id)
+  const restaurant = restaurantList.results.filter(function(restaurant) {
+    return restaurant.id === Number(req.params.restaurant_id)
+    // req.params.restaurant_id 是字串 須加number 或用雙等號
+  })
+  res.render("show", {
+    restaurant: restaurant[0]
+  })
 })
 
 app.listen(port, () => {
